@@ -11,6 +11,17 @@
     <title>Document</title>
 </head>
 <body>
+    <nav class = "navbar">
+    <div class="nav-wrapper">
+      <a href="{{ url_for('tasks') }}" class="brand-logo">Short Rentals</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{{ url_for('tasks') }}">Home</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+        
     {% block content %}
     {% endblock %}
      <script src=" https://code.jquery.com/jquery-3.5.1.min.js"
