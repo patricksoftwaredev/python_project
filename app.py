@@ -25,6 +25,25 @@ def tasks():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()}
+        )
+
+        if existing_user:
+            print("Email Already Taken")
+            return redirect(url_for("register"))
+
+        register = {
+            "first_name": request.form.get("first name").lower(),
+            "last_name": request.form.get("last name").lower(),
+            "passowrd": generate_password_hash(request.form.get("password")),
+            "email": request.form.get("email").lower()
+            print("Registration Completed")
+        }
+        mongo.db.users.insert_one(register)
+
+        session["user"] = request.form.get("first name", "last name").lower()
     return render_template("register.html")
 
 
