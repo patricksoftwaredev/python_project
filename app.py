@@ -64,6 +64,11 @@ def login():
                 
     return render_template("login.html")
 
+@app.route("/logout")
+def logout():
+    print("Logout Successful")
+    session.clear()
+    return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.run(host = os.environ.get("IP"),

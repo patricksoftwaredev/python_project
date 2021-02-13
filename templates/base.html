@@ -18,6 +18,10 @@
         <li><a href="{{ url_for('tasks') }}">Home</a></li>
         <li><a href="{{ url_for('register') }}">Register</a></li>
         <li><a href="{{ url_for('login') }}">Log in</a></li>
+        {% endif %}
+        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        <li><a href="{{ url_for('Account') }}">Account</a></li>
+        {% else %}
         <li><a href="collapsible.html">JavaScript</a></li>
       </ul>
     </div>
