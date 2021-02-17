@@ -13,8 +13,9 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017/visipedia_annotation_toolkit" 
+app.config["MONGO_URI"] = "mongodb://localhost:27017/visipedia_annotation_toolkit"
 mongo = PyMongo(app)
+
 
 @app.route("/")
 @app.route("/tasks")
@@ -44,6 +45,7 @@ def register():
         mongo.db.users.insert_one(register)
 
         session["user"] = request.form.get("first name", "last name").lower()
+        return redirect(url_for("account", email=session["user"]))
     return render_template("register.html")
 
 
@@ -54,13 +56,14 @@ def login():
             {"email": request.form.get("email").lower()})
 
         if existing_user:
-               if check_password_hash(
-                        existing_user["password"], request.form.get("pasword")):
-                    session["user"] = request.form.get("email").lower()
-                    print("Welcome,{}".format(request.form.get("email")))
+            if check_password_hash(
+                    existing_user["password"], request.form.get("pasword")):
+                session["user"] = request.form.get("email").lower()
+                print("Welcome,{}".format(request.form.get("email")))
+                return redirect(url_for("account", email=session["user"]))
         else:
-                    print("incorrect Name or Password")
-                    return redirect(url_for("login"))
+            print("incorrect Name or Password")
+            return redirect(url_for("login"))
 
     return render_template("login.html")
 
@@ -71,9 +74,13 @@ def logout():
     session.clear()
     return redirect(url_for("login"))
 
-@app.route("/account")
-def account():
-    return render_template("account")
+
+@app.route("/account/<email>", methods=["GET", "POST"])
+def account(email):
+    email = mongo.db.users.find_one(
+        {"email": session["user"]})["email"]
+    return render_template("account.html", email=email)
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
