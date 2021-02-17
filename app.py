@@ -13,8 +13,8 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
+app.config["MONGO_URI"] = "mongodb://localhost:27017/visipedia_annotation_toolkit" 
 mongo = PyMongo(app)
-
 
 @app.route("/")
 @app.route("/tasks")

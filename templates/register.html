@@ -2,7 +2,7 @@
 {% block content %}
 <h3 text-align="center">Register</h3>
 <div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ for_url('register') }}">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
       <div class="row">
         <div class="input-field col s6">
           <input placeholder="Placeholder" id="first_name" type="text"  name="first_name" class="validate">

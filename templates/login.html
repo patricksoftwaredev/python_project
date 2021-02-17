@@ -2,7 +2,7 @@
 {% block content %}
 <h3 text-align="center">Log in</h3>
 <div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ for_url('login') }}">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
         <div class="row">
             <div class="input-field col s6">
                 <input id="email" type="email" name="email" class="validate">
@@ -24,3 +24,4 @@
 
         </div>
     </div>
+    {% endblock %}

@@ -4,8 +4,9 @@ h3 {
     margin-bottom: 10px;
     font-family: 'Montserrat', sans-serif;
 }
-.banner{
-    background-image: url("img/image (14).jpg");
-    background-size: 100vh;
+.container{
+    background-image: url("../css/image\ \(14\).jpg");
+    background-size: cover;
+    background-position: center;
     
 }
