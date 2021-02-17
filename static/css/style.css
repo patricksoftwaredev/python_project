@@ -2,4 +2,10 @@ h3 {
     text-align: center;
     left: 50%;
     margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+.banner{
+    background-image: url("img/image (14).jpg");
+    background-size: 100vh;
+    
 }
