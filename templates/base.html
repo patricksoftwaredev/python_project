@@ -19,7 +19,7 @@
         <li><a href="{{ url_for('register') }}">Register</a></li>
         <li><a href="{{ url_for('login') }}">Log in</a></li>
         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        <li><a href="{{ url_for('account') }}">Account</a></li>
+        <li><a href="{{ url_for('account', email=session['user']) }}">Account</a></li>
       </ul>
     </div>
   </nav>

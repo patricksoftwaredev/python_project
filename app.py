@@ -59,8 +59,10 @@ def login():
             if check_password_hash(
                     existing_user["password"], request.form.get("pasword")):
                 session["user"] = request.form.get("email").lower()
-                print("Welcome,{}".format(request.form.get("email")))
-                return redirect(url_for("account", email=session["user"]))
+                print("Welcome,{}".format(
+                    request.form.get("email")))
+                return redirect(url_for(
+                    "account", email=session["user"]))
         else:
             print("incorrect Name or Password")
             return redirect(url_for("login"))
@@ -79,7 +81,11 @@ def logout():
 def account(email):
     email = mongo.db.users.find_one(
         {"email": session["user"]})["email"]
-    return render_template("account.html", email=email)
+
+    if session['user']:
+        return render_template("account.html", email=email)
+
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
